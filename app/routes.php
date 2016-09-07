@@ -9,4 +9,4 @@
 
 $routes = array(
 	'/' => 'index#index',
-	'/products' => 'products#index')
+	'/products' => 'products#index'	)
