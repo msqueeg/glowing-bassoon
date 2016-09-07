@@ -3,7 +3,7 @@
 * basic routing
 */
 
-namespace Msqueeg/Lib;
+namespace Msqueeg\Lib;
 
 class Router
 {
@@ -48,7 +48,7 @@ class Router
 	{
 		$uri = explode('?', $_SERVER['REQUEST_URI']);
 		$uri = $uri[0];
-		$uri = substr($uri, strlen(WEB_ROOT));
+		$uri = substr($uri, strlen(WEB_PATH));
 
 		return $uri;
 	}
@@ -143,7 +143,7 @@ class Router
 	 */
 	protected function _initializeController($name)
 	{
-		$controller = ucfirst($name) . 'Controller';
+		$controller = 'Msqueeg\\Controllers\\' . ucfirst($name) . 'Controller';
 		return new $controller();
 	}
 }

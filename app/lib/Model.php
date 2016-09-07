@@ -3,7 +3,7 @@
 * A base model for handling the database connection
 */	
 
-namespace Msqueeg/Lib;
+namespace Msqueeg\Lib;
 
 class Model
 {

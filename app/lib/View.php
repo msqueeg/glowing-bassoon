@@ -3,7 +3,7 @@
 * a class for handling views
 */
 
-namespace Msqueeg/Lib;
+namespace Msqueeg\Lib;
 
 class View
 {
@@ -24,7 +24,7 @@ class View
 	
 	public function __construct()
 	{
-	  $this->settings = new stdClass();
+	  $this->settings = new \stdClass();
 	}
 	/**
 	 * Renders the view script, and stores the output
@@ -65,7 +65,7 @@ class View
 	  else {
   		// includes the current view, which uses the "$this->content()" to output the 
   		// view script that was just rendered
-  		include(ROOT_PATH . '/app/views/layouts/' . $this->_getLayout() . '.phtml');
+  		include(ROOT_PATH . '/app/views/' . $this->_getLayout() . '.phtml');
 	  }
 	}
 	

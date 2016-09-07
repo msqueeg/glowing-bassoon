@@ -35,6 +35,9 @@ defined('APP_PATH')
 defined('INC_PATH')
 	or define('INC_PATH', APP_PATH . '/inc');
 
+defined('WEB_PATH')
+	or define('WEB_PATH', ROOT_PATH . '/public_html');
+
 // start the session
 
 session_start();
@@ -42,8 +45,9 @@ session_start();
 
 include(APP_PATH . '/routes.php');
 
-
 //composer autoloader
 
-require_once( APP_PATH . '/vendor/autoloader.php');
+require_once( ROOT_PATH . '/vendor/autoload.php');
 
+$router = New Msqueeg\Lib\Router();
+$router->execute($routes);

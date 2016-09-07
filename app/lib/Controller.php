@@ -4,7 +4,7 @@
 * 
 */
 
-namespace Msqueeg/Lib;
+namespace Msqueeg\Lib;
 
 class Controller
 {
