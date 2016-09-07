@@ -3,6 +3,9 @@
 * The base controller
 * 
 */
+
+namespace Msqueeg/Lib;
+
 class Controller
 {
 	public $view = null;

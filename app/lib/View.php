@@ -2,6 +2,9 @@
 /**
 * a class for handling views
 */
+
+namespace Msqueeg/Lib;
+
 class View
 {
 	// used for holding the content of the view script

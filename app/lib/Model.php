@@ -2,6 +2,9 @@
 /**
 * A base model for handling the database connection
 */	
+
+namespace Msqueeg/Lib;
+
 class Model
 {
 	protected $_dbh = null;

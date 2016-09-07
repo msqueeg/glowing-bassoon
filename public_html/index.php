@@ -25,19 +25,25 @@ if($_ENV === 'dev') {
 /**
  * other useful config stuff to set up
  */
+
+defined('ROOT_PATH')
+	or define('ROOT_PATH', realpath('../'));
+
 defined('APP_PATH')
-	or define('APP_PATH', realpath(dirname(__FILE__) . '/app');
+	or define('APP_PATH', ROOT_PATH . '/app');
 
 defined('INC_PATH')
-	or define('INC_PATH', realpath(dirname(__FILE__) . '/app/inc'));
+	or define('INC_PATH', APP_PATH . '/inc');
 
 // start the session
 
 session_start();
 
+
 include(APP_PATH . '/routes.php');
 
-//autoloader
 
-require_once('/vendor/autoloader.php');
+//composer autoloader
+
+require_once( APP_PATH . '/vendor/autoloader.php');
 

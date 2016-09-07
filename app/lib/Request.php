@@ -2,6 +2,9 @@
 /**
 * 
 */
+
+namespace Msqueeg/Lib;
+
 class Request
 {
 	/**

@@ -2,6 +2,9 @@
 /**
 * basic routing
 */
+
+namespace Msqueeg/Lib;
+
 class Router
 {
 	
