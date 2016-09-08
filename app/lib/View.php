@@ -17,6 +17,7 @@ class View
 	
 	// initializes the data array
 	protected $_data = array();
+	
 	// intializes the additional javascripts to add to the header.
 	protected $_javascripts = '';
 	
@@ -29,13 +30,13 @@ class View
 	/**
 	 * Renders the view script, and stores the output
 	 */
-	protected function _renderViewScript($viewScript)
+	protected function _renderView($view)
 	{
 		// starts the output buffer
 		ob_start();
 		
 		// includes the view script
-		include(ROOT_PATH . '/app/views/scripts/' . $viewScript);
+		include(ROOT_PATH . '/app/views/' . $view);
 		
 		// returns the content of the output buffer
 		$this->_content = ob_get_clean();
@@ -50,21 +51,22 @@ class View
 	}
 	
 	/**
-	 * Renders the current view.
+	 * renders the view and includes the layout, which uses $this->content() to
+	 * output the view that was just rendered
 	 */
-	public function render($viewScript)
+	public function render($view)
 	{
-	  if ($viewScript && $this->_viewEnabled) {
-  		// renders the view script
-  		$this->_renderViewScript($viewScript);
-	  }
-		
+		//render the view
+	  if ($view && $this->_viewEnabled) {
+  		$this->_renderView($view);
+	  } 
+	  //display content if layout is disabled
 	  if ($this->_isLayoutDisabled()) {
 	    echo $this->_content;
 	  }
+	  // includes the current view, which uses the "$this->content()" to output the 
+      // view script that was just rendered
 	  else {
-  		// includes the current view, which uses the "$this->content()" to output the 
-  		// view script that was just rendered
   		include(ROOT_PATH . '/app/views/' . $this->_getLayout() . '.phtml');
 	  }
 	}

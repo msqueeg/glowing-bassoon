@@ -23,7 +23,8 @@ class Controller
 
 		$this->view->settings->action = $this->_action;
 
-		$this->view->settings->controller = strtolower(str_replace('Controller', '', get_class($this)));
+		//$this->view->settings->controller = strtolower(str_replace('Controller', '', get_class($this)));
+		$this->view->settings->controller = get_class($this);
 	}
 
 	public function beforeFilters()
@@ -59,22 +60,22 @@ class Controller
 
 		$this->afterFilters();
 
-		$this->view->render($this->_getViewScript($action));
+		$this->view->render($this->_getView($action));
 	}
 
 	/**
-	 * fetches path to view for the given action
+	 * fetches filename for to view for the given action
 	 * @author msqueeg <msqueeg@gmail.com>
 	 * @version [version]
 	 * @date    2016-08-29
 	 * @param   string     $action 
 	 * @return  string     the path to the view
 	 */
-	protected function _getViewScript($action)
+	protected function _getView($action)
 	{
-		$controller = get_class($this);
+		$controller = explode("\\", get_class($this));
 
-		$scriptPath = strtolower(substr($controller, 0 -10) . '/' . $action . '.phtml');
+		$scriptPath = strtolower(str_replace('Controller', '', $controller[2]) . '/' . $action . '.phtml');
 
 		return $scriptPath;
 	}
