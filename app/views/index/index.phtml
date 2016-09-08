@@ -1,6 +1,30 @@
-<?php echo '<pre>'; ?>
-<?php print_r($this); ?>
-<?php echo '</pre>'; ?>
+<?php 
+/**
+ * default view for web site
+ */
+/*echo '<pre>';
+      print_r($this); 
+      echo '</pre>';*/ ?>
 <h1><?php echo $this->message; ?></h1>
+<h2>Accounts</h2>
+<?php if(is_array($this->accountRecords)): ?>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Account</th>
+			<th>Username</th>
+			<th>Password</th>
+		</tr>
+	<?php foreach($this->accountRecords as $record): ?>
+		<tr>
+			<td><?php echo $record['id']; ?></td>
+			<td><?php echo $record['account_name']; ?></td>
+			<td><?php echo $record['username']; ?></td>
+			<td><?php echo $record['password']; ?></td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php else: ?>
+	<p>No Accounts set up!</p>
+<?php endif; ?>
 
-<p>Lorem Ipsum</p>

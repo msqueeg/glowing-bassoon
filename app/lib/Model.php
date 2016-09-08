@@ -10,12 +10,12 @@ class Model
 	protected $_dbh = null;
 	protected $_table = "";
 	
-	function __construct(argument)
+	function __construct()
 	{
-		$settings = parse_ini_file(ROOT_PATH . '/config/settings.ini', true);
+		$settings = parse_ini_file(APP_PATH . '/config/settings.ini', true);
 
 		//connection using Medoo library
-		$this->_dbh = new medoo([
+		$this->_dbh = new \medoo([
 			'database_type' => $settings['db']['type'],
 			'database_name' => $settings['db']['name'],
 			'server' => $settings['db']['host'],
@@ -43,6 +43,11 @@ class Model
 		$this->_table = $table;
 	}
 
+	public function getTable()
+	{
+		return $this->_table;
+	}
+
 	/**
 	 * return single record for database
 	 * @author msqueeg <msqueeg@gmail.com>
@@ -51,9 +56,14 @@ class Model
 	 * @param   [type]     $id [description]
 	 * @return  [type]         [description]
 	 */
-	public function fetchOne($id)
+	public function getOne($id)
 	{
-		return $this->_dbh->select($this->_table,'*', [ 'id' => $id ] );
+		return $this->_dbh->get($this->_table,"*", [ 'id' => $id ] );
+	}
+
+	public function selectRecords()
+	{
+		return $this->_dbh->select($this->_table,"*");
 	}
 
 	/**
@@ -65,13 +75,15 @@ class Model
 	 * @param   array      $data [description]
 	 * @return  [type]           [description]
 	 */
-	public function saveAll($data = array())
+	public function saveRecord($data = array())
 	{
 		if(array_key_exists('id', $data)) {
 
-			$update = unset($data['id']);
+			$id = $data['id'];
 
-			$lastRecord = $this->_dbh->update($this->_table,$update,[ 'id' => $data['id']]);
+            unset($data['id']);
+
+			$lastRecord = $this->_dbh->update($this->_table,$data,[ 'id' => $id]);
 
 		} else {
 			$lastRecord = $this->_dbh->insert($this->_table,$data);
